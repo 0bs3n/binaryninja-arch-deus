@@ -2,7 +2,7 @@ from binaryninja import Architecture, Platform
 
 from .deus_arch import DeusArchitecture
 from .deus_view import DeusView
-from .deus_calling_convention import DeusCallingConvention
+from .deus_call import DeusCallingConvention
 
 DeusArchitecture.register()
 
@@ -15,6 +15,6 @@ class DeusPlatform(Platform):
 deus_platform = DeusPlatform(deus_arch)
 deus_platform.register("deus")
 
-Architecture['deus'].register_calling_convention(DeusCallingConvention(Architecture['deus'], 'deus-abi'))
 
 DeusView.register()
+Architecture['deus'].register_calling_convention(DeusCallingConvention(Architecture['deus'], 'deus-abi'))

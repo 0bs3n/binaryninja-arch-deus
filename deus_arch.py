@@ -48,7 +48,7 @@ class DeusArchitecture(Architecture):
             log_error(f"Ambiguous decoding: {decode_result} @ {addr:08x}")
             return None
         elif len(decode_results) == 0:
-            log_error(f"No omplementation found for instruction at {hex(addr)}")
+            log_error(f"No implementation found for instruction at {hex(addr)}")
             return None
         return decode_results[0]
     
