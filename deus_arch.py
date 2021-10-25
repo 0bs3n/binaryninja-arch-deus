@@ -1,5 +1,5 @@
 from typing import List
-from binaryninja import log_error
+from binaryninja import log_error, IntrinsicInfo, Type, IntrinsicInput
 from binaryninja.enums import LowLevelILFlagCondition, FlagRole
 
 from .arithmetic_instructions import *
@@ -35,6 +35,17 @@ class DeusArchitecture(Architecture):
         "zs": ["z", "s"],
         "z": ["z"],
         "s": ["s"]
+    }
+
+    intrinsics = {
+        "powm": IntrinsicInfo(
+            [
+                IntrinsicInput(Type.float(16), "base"), 
+                IntrinsicInput(Type.float(16), "exp"), 
+                IntrinsicInput(Type.float(16), "mod")
+            ], 
+            [Type.float(16)]
+        )
     }
 
     def decode_instruction(self, data: bytes, addr: int):
