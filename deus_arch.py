@@ -40,11 +40,11 @@ class DeusArchitecture(Architecture):
     intrinsics = {
         "powm": IntrinsicInfo(
             [
-                IntrinsicInput(Type.float(16), "base"), 
-                IntrinsicInput(Type.float(16), "exp"), 
-                IntrinsicInput(Type.float(16), "mod")
+                IntrinsicInput(Type.int(16), "base"), 
+                IntrinsicInput(Type.int(16), "exp"), 
+                IntrinsicInput(Type.int(16), "mod")
             ], 
-            [Type.float(16)]
+            [Type.int(16)]
         )
     }
 
