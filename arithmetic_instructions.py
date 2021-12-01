@@ -83,16 +83,8 @@ class POWM(FixedInstruction):
         zC = il.reg(16, self.args[1])
         zA = il.reg(16, self.args[2])
 
-        # zB is the 5th defined refister as per deus_register.py
-        # TODO: figure out a better way to do this
-        # what is this type, and why isn't it just an il.reg()?
-        il.append(il.intrinsic([ILRegister(il.arch, il.arch.get_reg_index(self.args[0]))], "powm", [zB, zC, zA]))
-
-        # FIXME: This is a hack, to force the return value to be zB
-        # This is explicitly breaking with a literal interpretation of the
-        # assembly and is only here because we only have one file to care about.
-        # REMOVE!
-        il.append(il.set_reg(16, "rA", il.reg(16, "zB")))
+        intrins = il.intrinsic([il.arch.get_reg_index(self.args[0])], "powm", [zB, zC, zA])
+        il.append(intrins)
 
         return self.length
 
